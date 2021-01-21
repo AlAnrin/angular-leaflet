@@ -20,7 +20,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
 
   token = 'pk.eyJ1IjoiYWxhbnJpbiIsImEiOiJja2s1a3d6NDEwNmRnMm9uNGQ5czB6NGVkIn0.PefIA3KREZSJIF465ZYYFA';
 
-  defaultIcon = L.icon({iconUrl: 'marker-icon.png'});
+  defaultIcon = L.icon({iconUrl: 'assets/marker-icon.png'});
   greenIcon = L.icon({
     iconUrl: 'assets/red-marker.png',
     popupAnchor:  [-3, -41] // point from which the popup should open relative to the iconAnchor
@@ -74,6 +74,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
           if (this.markers.find(x => x.id === coord.id && x.group_id == group.id) == null) {
             const marker = L.marker(coord.coordinates).addTo(this.map)
               .on('click', () => this.changeSelectPoint(coord, group));
+            marker.setIcon(this.defaultIcon);
             marker.bindPopup(`Here is: ${coord.name}`);
             this.markers.push({id: coord.id, group_id: group.id, marker});
           }

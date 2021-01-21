@@ -4,7 +4,7 @@
   <div class="row">
     <h4>{{group.name}}</h4>
     <button class="icon-button hidden-list-icon" (click)="hiddenGroup(group)">
-      <img [src]="group.hidden ? '../../assets/keyboard_arrow_down-black-18dp.svg' : '../../assets/keyboard_arrow_up-black-18dp.svg'">
+      <img [src]="group.hidden ? 'assets/keyboard_arrow_down-black-18dp.svg' : 'assets/keyboard_arrow_up-black-18dp.svg'">
     </button>
   </div>
   <ng-container *ngIf="!group.hidden">
@@ -14,7 +14,7 @@
              (click)="changeSelectPoint(coord, group)">{{coord.name}}</div>
         <div class="spacer"></div>
         <button class="icon-button" (click)="deleteCoordinates(coord, group)">
-          <img src="../../assets/delete-black-18dp.svg">
+          <img src="assets/delete-black-18dp.svg">
         </button>
       </div>
     </div>
