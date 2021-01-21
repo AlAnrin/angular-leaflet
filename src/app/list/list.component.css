@@ -1,0 +1,33 @@
+.title {
+  width: 100%;
+  line-height: 20px;
+  margin: 2px;
+  border-bottom: 1px solid gray;
+}
+.title:hover {
+  background: #6565c7;
+  cursor: pointer;
+}
+.active {
+  background: #f14b4b;
+}
+.active:hover {
+  background: darkred;
+  color: white;
+}
+.spacer {
+  flex: 1;
+}
+.nice-input {
+  border: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+  margin: 10px 5px;
+}
+::placeholder {
+  color: #2f2f6c;
+  opacity: 1;
+}
+h4 {
+  margin: 5px;
+}

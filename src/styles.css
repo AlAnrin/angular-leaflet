@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~leaflet/dist/leaflet.css";
+
+html, body {
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+.app-list {
+  width: 20vw;
+  height: 100vh;
+  overflow: auto;
+}
+.app-map {
+  width: 80vw;
+  height: 100vh;
+}
+
+.icon-button {
+  border: none;
+  outline: none;
+  background: transparent;
+  border-radius: 5px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  padding: 2px;
+}
+.icon-button:hover {
+  background: #b80717;
+}
+.hidden-list-icon:hover {
+  background: #6565c7;
+}

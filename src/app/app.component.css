@@ -1,0 +1,59 @@
+.modal-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(213, 213, 236, 0.74);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+}
+.modal-content {
+  background: white;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 5px;
+  width: 400px;
+  position: relative;
+  margin-top: 30vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+}
+.dialog-type-0-height {
+  height: 220px;
+}
+.dialog-type-1-height {
+  height: 130px;
+}
+.modal-close-icon {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+h4 {
+  margin-bottom: 5px;
+}
+.dialog-span {
+  margin: 5px;
+}
+.submit-button {
+  border: none;
+  outline: none;
+  background: transparent;
+  margin: 10px 0 5px 0;
+  padding: 5px;
+  border-radius: 5px;
+}
+.submit-button:hover {
+  background: #6565c7;
+}
+.submit-button:disabled:hover {
+  background: transparent;
+}
+
