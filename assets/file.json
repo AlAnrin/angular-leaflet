@@ -1,0 +1,73 @@
+{
+  "data": [
+    {
+      "id": 1000000,
+      "name": "devil pentagram",
+      "hidden": false,
+      "array":
+      [
+        {
+          "id": 0,
+          "name": "top of pentagram",
+          "coordinates": [60.023770, 30.292923]
+        },
+        {
+          "id": 1,
+          "name": "bottom left of pentagram",
+          "coordinates": [59.903669, 30.233920]
+        },
+        {
+          "id": 2,
+          "name": "bottom right of pentagram",
+          "coordinates": [59.916161, 30.399007]
+        },
+        {
+          "id": 3,
+          "name": "middle left of pentagram",
+          "coordinates": [59.982999, 30.212844]
+        },
+        {
+          "id": 4,
+          "name": "middle right of pentagram",
+          "coordinates": [59.984282, 30.389359]
+        },
+        {
+          "id": 5,
+          "name": "devil place",
+          "coordinates": [59.963698, 30.304581]
+        }
+      ]
+    },
+    {
+      "id": 1000001,
+      "name": "best places to eat",
+      "hidden": false,
+      "array":
+      [
+        {
+          "id": 0,
+          "name": "2Taco&co",
+          "coordinates": [59.935932, 30.352498]
+        },
+        {
+          "id": 1,
+          "name": "Kashmir",
+          "coordinates": [59.926081, 30.346803]
+        },
+        {
+          "id": 2,
+          "name": "O'Hooligans",
+          "coordinates": [59.934869, 30.335412]
+        }
+      ]
+    },
+    {
+      "id": 1000002,
+      "name": "best places to Aliens",
+      "hidden": false,
+      "array": [
+
+      ]
+    }
+  ]
+}
