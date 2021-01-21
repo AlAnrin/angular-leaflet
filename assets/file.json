@@ -66,7 +66,38 @@
       "name": "best places to Aliens",
       "hidden": false,
       "array": [
-
+        {
+          "id": 0,
+          "name": "K-k-kudrowo",
+          "coordinates": [59.905887, 30.515021]
+        },
+        {
+          "id": 1,
+          "name": "Murino",
+          "coordinates": [60.049970, 30.431750]
+        }
+      ]
+    },
+    {
+      "id": 1000003,
+      "name": "Getto Bridge",
+      "hidden": false,
+      "array": [
+        {
+          "id": 0,
+          "name": "Best Getto",
+          "coordinates": [59.877954, 30.453566]
+        },
+        {
+          "id": 1,
+          "name": "Also Getto",
+          "coordinates": [60.040102, 30.435992]
+        },
+        {
+          "id": 1,
+          "name": "Yo Getto",
+          "coordinates": [59.996824, 30.132026]
+        }
       ]
     }
   ]
