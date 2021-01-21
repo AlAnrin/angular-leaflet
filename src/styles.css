@@ -36,3 +36,46 @@ html, body {
 .hidden-list-icon:hover {
   background: #6565c7;
 }
+.app-dialog-component {
+  display: none;
+}
+
+.app-dialog {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1100;
+}
+
+.app-dialog-body {
+  background: white;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 5px;
+  width: 400px;
+  position: relative;
+  margin-top: 30vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.app-dialog-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.75;
+  z-index: 1000;
+}
+
+body.app-dialog-open {
+  overflow: hidden;
+}

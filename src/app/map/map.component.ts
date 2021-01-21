@@ -84,8 +84,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-
     if (changes.groups != null) {
       if (this.map != null) {
         const checkedMarkers = [];
@@ -114,6 +112,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
           return filtered.length != group.array.length;
         });
 
+        // Не происходит перерисовка при скрытии группы, если была фильтрация
         this.paintMarkers(newCoordinates);
 
         if (this.selectPoint.id != -1) {

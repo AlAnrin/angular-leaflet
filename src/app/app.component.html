@@ -12,38 +12,37 @@
            [groups]="groups"
            [selectPoint]="selectPoint"></app-map>
 </div>
-<div #modal class="modal-dialog" *ngIf="isDialogShow">
-  <div [ngClass]="{'modal-content': true,
-  'dialog-type-0-height': dialogType === 0,
-  'dialog-type-1-height': dialogType === 1}">
-    <button (click)="changeDialogState()" class="icon-button modal-close-icon">
-      <img src="assets/close-black-18dp.svg">
-    </button>
-    <h4>{{dialogTitle}}</h4>
-    <span class="dialog-span">По координатам:</span>
-    <ng-container *ngIf="dialogType === 0">
-      <span>[{{dialogCoordinates}}]</span>
-      <span class="dialog-span">В группу:</span>
-      <form #nameForm="ngForm" class="dialog-form">
-        <select name="groups" id="groups" #group="ngModel"
-                [(ngModel)]="selectGroupForCreate" required>
-          <option *ngFor="let group of groups"
-                  [ngValue]="group">{{group.name}}</option>
-        </select>
+<app-dialog class="app-dialog-component" id="custom-modal-1">
+  <button (click)="closeModal('custom-modal-1')" class="icon-button modal-close-icon">
+    <img src="assets/close-black-18dp.svg">
+  </button>
+  <h4>{{dialogTitle}}</h4>
+  <span class="dialog-span">По координатам:</span>
+  <span>[{{dialogCoordinates}}]</span>
+  <span class="dialog-span">В группу:</span>
+  <form #nameForm="ngForm" class="dialog-form">
+    <select name="groups" id="groups" #group="ngModel"
+            [(ngModel)]="selectGroupForCreate" required>
+      <option *ngFor="let group of groups"
+              [ngValue]="group">{{group.name}}</option>
+    </select>
 
-        <span class="dialog-span">Название:</span>
-        <input name="name" #name="ngModel"
-               [(ngModel)]="newPointName" required minlength="4">
+    <span class="dialog-span">Название:</span>
+    <input name="name" #name="ngModel"
+           [(ngModel)]="newPointName" required minlength="4">
 
-        <button class="submit-button"
-                [disabled]="nameForm.invalid"
-                (click)="createNewPoint()">Создать</button>
-      </form>
-    </ng-container>
-    <ng-container *ngIf="dialogType === 1">
-      <span>[{{dialogCoordinates.coordinates}}]</span>
-      <button class="submit-button"
-              (click)="deletePoint()">Удалить</button>
-    </ng-container>
-  </div>
-</div>
+    <button class="submit-button"
+            [disabled]="nameForm.invalid"
+            (click)="createNewPoint()">Создать</button>
+  </form>
+</app-dialog>
+<app-dialog class="app-dialog-component" id="custom-modal-2">
+  <button (click)="closeModal('custom-modal-2')" class="icon-button modal-close-icon">
+    <img src="assets/close-black-18dp.svg">
+  </button>
+  <h4>{{dialogTitle}}</h4>
+  <span class="dialog-span">По координатам:</span>
+  <span>[{{dialogCoordinates?.coordinates}}]</span>
+  <button class="submit-button"
+          (click)="deletePoint()">Удалить</button>
+</app-dialog>

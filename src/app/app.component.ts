@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as file from '../assets/file.json';
+import {DialogService} from './dialog/dialog.service';
 
 @Component({
   selector: 'app-root',
@@ -15,15 +16,19 @@ export class AppComponent {
 
   filterValue = '';
 
-  isDialogShow = false;
-  dialogType = 0;
   dialogTitle = '';
   dialogCoordinates = null;
   selectGroupForCreate = null;
   newPointName = '';
 
-  changeDialogState(): void {
-    this.isDialogShow = !this.isDialogShow;
+  constructor(private dialogService: DialogService) { }
+
+  openModal(id: string): void {
+    this.dialogService.open(id);
+  }
+
+  closeModal(id: string): void {
+    this.dialogService.close(id);
   }
 
   getDefaultDatasForDialog(): void {
@@ -38,14 +43,13 @@ export class AppComponent {
 
   hiddenGroup(group): void {
     group.hidden = !group.hidden;
-    this.groups = [...this.$groups];
+    this.changeFilterValue(this.filterValue);
   }
 
   addNewPoint(coordinate): void {
-    this.dialogType = 0;
     this.dialogTitle = 'Добавление новой точки на карту';
     this.dialogCoordinates = coordinate;
-    this.changeDialogState();
+    this.openModal('custom-modal-1');
   }
 
   createNewPoint(): void {
@@ -58,22 +62,21 @@ export class AppComponent {
     this.selectGroupForCreate.array.push(newPoint);
     this.changeFilterValue(this.filterValue);
     this.changeSelectPoint(newPoint);
-    this.changeDialogState();
+    this.closeModal('custom-modal-1');
     this.getDefaultDatasForDialog();
   }
 
   deleteCoordinate(coordinate): void {
-    this.dialogType = 1;
     this.dialogTitle = 'Вы действительно хотите удалить точку';
     this.dialogCoordinates = coordinate;
-    this.changeDialogState();
+    this.openModal('custom-modal-2');
   }
 
   deletePoint(): void {
     const group = this.$groups.find(gr => gr.id === this.dialogCoordinates.group_id);
     group.array.splice(group.array.findIndex(x => x.id === this.dialogCoordinates.id), 1);
     this.changeFilterValue(this.filterValue);
-    this.changeDialogState();
+    this.closeModal('custom-modal-2');
     this.getDefaultDatasForDialog();
   }
 
