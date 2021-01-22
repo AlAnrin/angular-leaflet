@@ -2,12 +2,6 @@
   display: flex;
   flex-direction: column;
 }
-.dialog-type-0-height {
-  height: 220px;
-}
-.dialog-type-1-height {
-  height: 130px;
-}
 .modal-close-icon {
   position: absolute;
   right: 5px;

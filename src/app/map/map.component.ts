@@ -106,13 +106,13 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
 
         const newCoordinates = this.groups.filter(group => {
           const filtered = group.array.filter(coord => {
-            const findInMarkers = checkedMarkers.find(x => x.id === coord.id && x.group_id === group.id);
+            const findInMarkers = checkedMarkers.find(x =>
+              x.id === coord.id && x.group_id === group.id);
             return findInMarkers != null;
           });
           return filtered.length != group.array.length;
         });
 
-        // Не происходит перерисовка при скрытии группы, если была фильтрация
         this.paintMarkers(newCoordinates);
 
         if (this.selectPoint.id != -1) {

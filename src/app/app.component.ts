@@ -8,7 +8,6 @@ import {DialogService} from './dialog/dialog.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'proteus-test';
   groups = [...file.data];
   $groups = [...file.data];
 
@@ -16,6 +15,8 @@ export class AppComponent {
 
   filterValue = '';
 
+  addingNewPointDialogId = 'addingNewPointDialogId';
+  deletePointDialogId = 'deletePointDialogId';
   dialogTitle = '';
   dialogCoordinates = null;
   selectGroupForCreate = null;
@@ -29,6 +30,7 @@ export class AppComponent {
 
   closeModal(id: string): void {
     this.dialogService.close(id);
+    this.getDefaultDatasForDialog();
   }
 
   getDefaultDatasForDialog(): void {
@@ -38,18 +40,17 @@ export class AppComponent {
     this.newPointName = '';
   }
 
-  // Сделать пагинацию для списка объектов.
-  // Написать тесты.
-
   hiddenGroup(group): void {
     group.hidden = !group.hidden;
+    const $find = this.$groups.find(x => x.id === group.id);
+    $find.hidden = group.hidden;
     this.changeFilterValue(this.filterValue);
   }
 
   addNewPoint(coordinate): void {
     this.dialogTitle = 'Добавление новой точки на карту';
     this.dialogCoordinates = coordinate;
-    this.openModal('custom-modal-1');
+    this.openModal(this.addingNewPointDialogId);
   }
 
   createNewPoint(): void {
@@ -62,22 +63,20 @@ export class AppComponent {
     this.selectGroupForCreate.array.push(newPoint);
     this.changeFilterValue(this.filterValue);
     this.changeSelectPoint(newPoint);
-    this.closeModal('custom-modal-1');
-    this.getDefaultDatasForDialog();
+    this.closeModal(this.addingNewPointDialogId);
   }
 
   deleteCoordinate(coordinate): void {
     this.dialogTitle = 'Вы действительно хотите удалить точку';
     this.dialogCoordinates = coordinate;
-    this.openModal('custom-modal-2');
+    this.openModal(this.deletePointDialogId);
   }
 
   deletePoint(): void {
     const group = this.$groups.find(gr => gr.id === this.dialogCoordinates.group_id);
     group.array.splice(group.array.findIndex(x => x.id === this.dialogCoordinates.id), 1);
     this.changeFilterValue(this.filterValue);
-    this.closeModal('custom-modal-2');
-    this.getDefaultDatasForDialog();
+    this.closeModal(this.deletePointDialogId);
   }
 
   changeSelectPoint(newPoint): void {

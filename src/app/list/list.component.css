@@ -6,6 +6,7 @@
 }
 .title:hover {
   background: #6565c7;
+  border-radius: 5px;
   cursor: pointer;
 }
 .active {
@@ -23,6 +24,8 @@
   border-bottom: 1px solid gray;
   outline: none;
   margin: 10px 5px;
+  width: -webkit-fill-available;
+  background: transparent;
 }
 ::placeholder {
   color: #2f2f6c;
@@ -30,4 +33,23 @@
 }
 h4 {
   margin: 5px;
+}
+.list {
+  overflow: auto;
+  height: 86vh;
+  margin: 5px 5px 2px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #7b7b7b #cbcbcb;
+}
+.list::-webkit-scrollbar {
+  width: 10px;
+}
+.list::-webkit-scrollbar-track {
+   background: #cbcbcb;
+  border-radius: 20px;
+ }
+.list::-webkit-scrollbar-thumb {
+  background-color: #7b7b7b;
+  border-radius: 20px;
+  border: 2px solid #cbcbcb;
 }

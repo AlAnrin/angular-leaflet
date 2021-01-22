@@ -1,22 +1,25 @@
 <input class="nice-input" type="text" placeholder="Фильтр"
        [(ngModel)]="filterValue" (keyup.enter)="changeFilterValue($event)">
-<div *ngFor="let group of groups">
-  <div class="row">
-    <h4>{{group.name}}</h4>
-    <button class="icon-button hidden-list-icon" (click)="hiddenGroup(group)">
-      <img [src]="group.hidden ? 'assets/keyboard_arrow_down-black-18dp.svg' : 'assets/keyboard_arrow_up-black-18dp.svg'">
-    </button>
-  </div>
-  <ng-container *ngIf="!group.hidden">
-    <div *ngFor="let coord of group.array">
-      <div class="row">
-        <div [ngClass]="{title: true, active : group.id === selectPoint.group_id && coord.id === selectPoint.id}"
-             (click)="changeSelectPoint(coord, group)">{{coord.name}}</div>
-        <div class="spacer"></div>
-        <button class="icon-button" (click)="deleteCoordinates(coord, group)">
-          <img src="assets/delete-black-18dp.svg">
-        </button>
-      </div>
+<div class="list">
+  <div *ngFor="let group of groups">
+    <div class="row">
+      <h4>{{group.name | titlecase }}</h4>
+      <div class="spacer"></div>
+      <button class="icon-button hidden-list-icon" (click)="hiddenGroup(group)">
+        <img [src]="group.hidden ? 'assets/keyboard_arrow_down-black-18dp.svg' : 'assets/keyboard_arrow_up-black-18dp.svg'">
+      </button>
     </div>
-  </ng-container>
+    <ng-container *ngIf="!group.hidden">
+      <div *ngFor="let coord of group.array">
+        <div class="row">
+          <div [ngClass]="{title: true, active : group.id === selectPoint.group_id && coord.id === selectPoint.id}"
+               (click)="changeSelectPoint(coord, group)">{{coord.name}}</div>
+          <div class="spacer"></div>
+          <button class="icon-button" (click)="deleteCoordinates(coord, group)">
+            <img src="assets/delete-black-18dp.svg">
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </div>

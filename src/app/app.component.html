@@ -1,19 +1,26 @@
-<div class="row">
-  <app-list class="app-list"
-            (hiddenGroupEmitter)="hiddenGroup($event)"
-            (deleteCoordinateFromListEmitter)="deleteCoordinate($event)"
-            (changeFilterValueEmitter)="changeFilterValue($event)"
-            (selectPointEmitter)="changeSelectPoint($event)"
-            [groups]="groups"
-            [selectPoint]="selectPoint"></app-list>
-  <app-map class="app-map"
-           (addPointEmitter)="addNewPoint($event)"
-           (selectPointEmitter)="changeSelectPoint($event)"
-           [groups]="groups"
-           [selectPoint]="selectPoint"></app-map>
+<div class="column">
+  <div class="toolbar row">
+    <img class="toolbar-icon" src="assets/henomorph.png">
+    SPb for Xenomorphus
+  </div>
+  <div class="row">
+    <app-list class="app-list"
+              (hiddenGroupEmitter)="hiddenGroup($event)"
+              (deleteCoordinateFromListEmitter)="deleteCoordinate($event)"
+              (changeFilterValueEmitter)="changeFilterValue($event)"
+              (selectPointEmitter)="changeSelectPoint($event)"
+              [groups]="groups"
+              [selectPoint]="selectPoint"></app-list>
+    <app-map class="app-map"
+             (addPointEmitter)="addNewPoint($event)"
+             (selectPointEmitter)="changeSelectPoint($event)"
+             [groups]="groups"
+             [selectPoint]="selectPoint"></app-map>
+  </div>
 </div>
-<app-dialog class="app-dialog-component" id="custom-modal-1">
-  <button (click)="closeModal('custom-modal-1')" class="icon-button modal-close-icon">
+
+<app-dialog class="app-dialog-component" [id]="addingNewPointDialogId">
+  <button (click)="closeModal(addingNewPointDialogId)" class="icon-button modal-close-icon">
     <img src="assets/close-black-18dp.svg">
   </button>
   <h4>{{dialogTitle}}</h4>
@@ -36,8 +43,8 @@
             (click)="createNewPoint()">Создать</button>
   </form>
 </app-dialog>
-<app-dialog class="app-dialog-component" id="custom-modal-2">
-  <button (click)="closeModal('custom-modal-2')" class="icon-button modal-close-icon">
+<app-dialog class="app-dialog-component" [id]="deletePointDialogId">
+  <button (click)="closeModal(deletePointDialogId)" class="icon-button modal-close-icon">
     <img src="assets/close-black-18dp.svg">
   </button>
   <h4>{{dialogTitle}}</h4>
