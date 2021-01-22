@@ -99,6 +99,23 @@
           "coordinates": [59.996824, 30.132026]
         }
       ]
+    },
+    {
+      "id": 1000004,
+      "name": "Best Susanin place's",
+      "hidden": false,
+      "array": [
+        {
+          "id": 0,
+          "name": "Round if you can",
+          "coordinates": [59.842987317893815,30.3221034026596]
+        },
+        {
+          "id": 1,
+          "name": "Betankuuuur",
+          "coordinates": [59.95310093052344,30.2665623810405]
+        }
+      ]
     }
   ]
 }
