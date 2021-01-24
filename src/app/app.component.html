@@ -36,12 +36,12 @@
     </select>
 
     <span class="dialog-span">Название:</span>
-    <input name="name" #name="ngModel"
+    <input name="name" #name="ngModel" id="name"
            [(ngModel)]="newPointName" required minlength="4">
 
     <button class="submit-button"
             [disabled]="nameForm.invalid"
-            (click)="createNewPoint()">Создать</button>
+            (click)="createNewPoint()">{{nameForm.invalid ? 'YЕ' : ''}}Создать</button>
   </form>
 </app-dialog>
 <app-dialog class="app-dialog-component" [@openCloseDialog]="state ? 'open' : 'close'"

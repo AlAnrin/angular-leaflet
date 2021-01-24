@@ -15,7 +15,7 @@
           <div [ngClass]="{title: true, active : group.id === selectPoint.group_id && coord.id === selectPoint.id}"
                (click)="changeSelectPoint(coord, group)">{{coord.name}}</div>
           <div class="spacer"></div>
-          <button class="icon-button delete-button" (click)="deleteCoordinates(coord, group)">
+          <button class="icon-button delete-icon-button" (click)="deleteCoordinates(coord, group)">
             <img src="assets/delete-black-18dp.svg">
           </button>
         </div>

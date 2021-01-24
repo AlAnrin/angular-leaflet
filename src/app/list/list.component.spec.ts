@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListComponent } from './list.component';
+import {FormsModule} from '@angular/forms';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -8,6 +9,9 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        FormsModule
+      ],
       declarations: [ ListComponent ]
     })
     .compileComponents();
