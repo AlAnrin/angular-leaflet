@@ -32,17 +32,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     this.markers = [];
   }
 
-  changeSelectPoint(coordinate: Coordinate, group: Group): void {
-    this.selectPointEmitter.emit({...coordinate, group_id: group.id});
-  }
-
-  addNewPoint(e): void {
-    const lat = e.latlng.lat;
-    const lon = e.latlng.lng;
-
-    this.addPointEmitter.emit([lat, lon]);
-  }
-
   private initMap(): void {
     this.map = L.map('map', {
       center: [59.9398, 30.33],
@@ -61,6 +50,17 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     tiles.addTo(this.map);
 
     this.paintMarkers(this.groups);
+  }
+
+  addNewPoint(e): void {
+    const lat = e.latlng.lat;
+    const lon = e.latlng.lng;
+
+    this.addPointEmitter.emit([lat, lon]);
+  }
+
+  changeSelectPoint(coordinate: Coordinate, group: Group): void {
+    this.selectPointEmitter.emit({...coordinate, group_id: group.id});
   }
 
   private deleteMarkers(markers): void {

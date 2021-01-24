@@ -1,25 +1,26 @@
 <div class="column">
   <div class="toolbar row">
     <img class="toolbar-icon" src="assets/henomorph.png">
-    SPb for Xenomorphus
+    {{title}}
   </div>
   <div class="row">
     <app-list class="app-list"
               (hiddenGroupEmitter)="hiddenGroup($event)"
-              (deleteCoordinateFromListEmitter)="deleteCoordinate($event)"
+              (deleteCoordinateFromListEmitter)="openDeletePointDialog($event)"
               (changeFilterValueEmitter)="changeFilterValue($event)"
               (selectPointEmitter)="changeSelectPoint($event)"
               [groups]="groups"
               [selectPoint]="selectPoint"></app-list>
     <app-map class="app-map"
-             (addPointEmitter)="addNewPoint($event)"
+             (addPointEmitter)="openAddNewPointDialog($event)"
              (selectPointEmitter)="changeSelectPoint($event)"
              [groups]="groups"
              [selectPoint]="selectPoint"></app-map>
   </div>
 </div>
 
-<app-dialog class="app-dialog-component" [id]="addingNewPointDialogId">
+<app-dialog class="app-dialog-component" [@openCloseDialog]="state ? 'open' : 'close'"
+            [id]="addingNewPointDialogId">
   <button (click)="closeModal(addingNewPointDialogId)" class="icon-button modal-close-icon">
     <img src="assets/close-black-18dp.svg">
   </button>
@@ -43,7 +44,8 @@
             (click)="createNewPoint()">Создать</button>
   </form>
 </app-dialog>
-<app-dialog class="app-dialog-component" [id]="deletePointDialogId">
+<app-dialog class="app-dialog-component" [@openCloseDialog]="state ? 'open' : 'close'"
+            [id]="deletePointDialogId">
   <button (click)="closeModal(deletePointDialogId)" class="icon-button modal-close-icon">
     <img src="assets/close-black-18dp.svg">
   </button>

@@ -3,13 +3,29 @@ import * as file from '../assets/file.json';
 import {DialogService} from './dialog/dialog.service';
 import {Group} from './classes/group';
 import {Coordinate} from './classes/coordinate';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    trigger('openCloseDialog', [
+      state('open', style({
+        opacity: 1
+      })),
+      state('close', style({
+        opacity: 0
+      })),
+      transition('open <=> close', [
+        animate('0.7s')
+      ]),
+    ])
+  ]
 })
 export class AppComponent {
+  title = 'SPb for Xenomorphus';
+
   groups = [...file.data];
   $groups = [...file.data];
 
@@ -24,13 +40,21 @@ export class AppComponent {
   selectGroupForCreate = null;
   newPointName = '';
 
+  state = false;
+
   constructor(private dialogService: DialogService) { }
 
+  toggleAnimation(): void {
+    this.state = !this.state;
+  }
+
   openModal(id: string): void {
+    this.toggleAnimation();
     this.dialogService.open(id);
   }
 
   closeModal(id: string): void {
+    this.toggleAnimation();
     this.dialogService.close(id);
     this.getDefaultDatasForDialog();
   }
@@ -49,7 +73,7 @@ export class AppComponent {
     this.changeFilterValue(this.filterValue);
   }
 
-  addNewPoint(coordinate: [number, number]): void {
+  openAddNewPointDialog(coordinate: [number, number]): void {
     this.dialogTitle = 'Добавление новой точки на карту';
     this.dialogCoordinates = coordinate;
     this.openModal(this.addingNewPointDialogId);
@@ -68,8 +92,8 @@ export class AppComponent {
     this.closeModal(this.addingNewPointDialogId);
   }
 
-  deleteCoordinate(coordinate: [number, number]): void {
-    this.dialogTitle = 'Вы действительно хотите удалить точку';
+  openDeletePointDialog(coordinate: [number, number]): void {
+    this.dialogTitle = 'Вы действительно хотите удалить точку?';
     this.dialogCoordinates = coordinate;
     this.openModal(this.deletePointDialogId);
   }
@@ -94,7 +118,7 @@ export class AppComponent {
       const newGroups = [];
       for (const group of this.$groups) {
         const filtered = group.array.filter(point =>
-          point.name.toLowerCase().indexOf(newFilter.toLowerCase()) != -1);
+          point.name.toLowerCase().indexOf(newFilter.toLowerCase()) !== -1);
         if (filtered.length > 0) {
           newGroups.push({...group, array: [...filtered]});
         }
