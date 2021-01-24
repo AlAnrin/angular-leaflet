@@ -6,8 +6,12 @@ import { ListComponent } from './list/list.component';
 import { MapComponent } from './map/map.component';
 import {FormsModule} from '@angular/forms';
 import {DialogModule} from './dialog/dialog.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
+  exports: [
+    DialogModule
+  ],
   declarations: [
     AppComponent,
     ListComponent,
@@ -15,6 +19,7 @@ import {DialogModule} from './dialog/dialog.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     DialogModule
   ],
