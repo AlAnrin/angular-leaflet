@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import * as file from '../assets/file.json';
 import {DialogService} from './dialog/dialog.service';
+import {Group} from './classes/group';
+import {Coordinate} from './classes/coordinate';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,7 @@ export class AppComponent {
   groups = [...file.data];
   $groups = [...file.data];
 
-  selectPoint = {id: -1};
+  selectPoint = new Coordinate(-1);
 
   filterValue = '';
 
@@ -40,14 +42,14 @@ export class AppComponent {
     this.newPointName = '';
   }
 
-  hiddenGroup(group): void {
+  hiddenGroup(group: Group): void {
     group.hidden = !group.hidden;
     const $find = this.$groups.find(x => x.id === group.id);
     $find.hidden = group.hidden;
     this.changeFilterValue(this.filterValue);
   }
 
-  addNewPoint(coordinate): void {
+  addNewPoint(coordinate: [number, number]): void {
     this.dialogTitle = 'Добавление новой точки на карту';
     this.dialogCoordinates = coordinate;
     this.openModal(this.addingNewPointDialogId);
@@ -66,7 +68,7 @@ export class AppComponent {
     this.closeModal(this.addingNewPointDialogId);
   }
 
-  deleteCoordinate(coordinate): void {
+  deleteCoordinate(coordinate: [number, number]): void {
     this.dialogTitle = 'Вы действительно хотите удалить точку';
     this.dialogCoordinates = coordinate;
     this.openModal(this.deletePointDialogId);
@@ -79,7 +81,7 @@ export class AppComponent {
     this.closeModal(this.deletePointDialogId);
   }
 
-  changeSelectPoint(newPoint): void {
+  changeSelectPoint(newPoint: Coordinate): void {
     this.selectPoint = newPoint;
   }
 

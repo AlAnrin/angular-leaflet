@@ -1,5 +1,7 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import * as L from 'leaflet';
+import {Coordinate} from '../classes/coordinate';
+import {Group} from '../classes/group';
 
 @Component({
   selector: 'app-map',
@@ -30,8 +32,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     this.markers = [];
   }
 
-  changeSelectPoint(coord, group): void {
-    this.selectPointEmitter.emit({...coord, group_id: group.id});
+  changeSelectPoint(coordinate: Coordinate, group: Group): void {
+    this.selectPointEmitter.emit({...coordinate, group_id: group.id});
   }
 
   addNewPoint(e): void {
@@ -67,7 +69,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  private paintMarkers(groups): void {
+  private paintMarkers(groups: Group[]): void {
     for (const group of groups) {
       if (!group.hidden) {
         for (const coord of group.array) {
