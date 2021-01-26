@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Group} from '../classes/group';
+import {Coordinate} from '../classes/coordinate';
 
 @Component({
   selector: 'app-list',
@@ -27,7 +28,7 @@ export class ListComponent implements OnInit {
     this.hiddenGroupEmitter.emit(group);
   }
 
-  deleteCoordinates(coordinate: Coordinates, group: Group): void {
+  deleteCoordinates(coordinate: Coordinate, group: Group): void {
     this.deleteCoordinateFromListEmitter.emit({...coordinate, group_id: group.id});
   }
 
@@ -35,7 +36,7 @@ export class ListComponent implements OnInit {
     this.changeFilterValueEmitter.emit(this.filterValue);
   }
 
-  changeSelectPoint(coordinate: Coordinates, group: Group): void {
+  changeSelectPoint(coordinate: Coordinate, group: Group): void {
     this.selectPointEmitter.emit({...coordinate, group_id: group.id});
   }
 }

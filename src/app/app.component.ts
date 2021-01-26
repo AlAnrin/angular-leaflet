@@ -106,7 +106,9 @@ export class AppComponent {
   }
 
   changeSelectPoint(newPoint: Coordinate): void {
-    this.selectPoint = newPoint;
+    this.selectPoint = (this.selectPoint.id === newPoint.id
+      && this.selectPoint.group_id === newPoint.group_id) ?
+      new Coordinate(-1) : newPoint;
   }
 
   changeFilterValue(newFilter): void {
