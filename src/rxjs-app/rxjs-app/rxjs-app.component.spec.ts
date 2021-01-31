@@ -1,34 +1,26 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import {DialogComponent} from './dialog/dialog/dialog.component';
-import {MapComponent} from './map/map.component';
-import {ListComponent} from './list/list.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { RxjsAppComponent } from './rxjs-app.component';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-describe('AppComponent', () => {
-  let fixture: any;
+describe('RxjsAppComponent', () => {
+  let fixture: ComponentFixture<RxjsAppComponent>;
   let app: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        FormsModule,
-        BrowserAnimationsModule
+        FormsModule
       ],
-      declarations: [
-        DialogComponent,
-        MapComponent,
-        ListComponent,
-        AppComponent
-      ],
-    }).compileComponents();
-    fixture = TestBed.createComponent(AppComponent);
+      declarations: [ RxjsAppComponent ]
+    })
+    .compileComponents();
+    fixture = TestBed.createComponent(RxjsAppComponent);
     app = fixture.componentInstance;
   });
 
-  it('should create the app', () => {
+  it('should create', () => {
     expect(app).toBeTruthy();
   });
 
@@ -62,8 +54,8 @@ describe('AppComponent', () => {
     const deleteIcons = fixture.debugElement.queryAll(By.css('.delete-icon-button'));
     deleteIcons[0].nativeElement.click();
     fixture.detectChanges();
-    const dialogs = fixture.debugElement.queryAll(By.css(`.app-dialog-component`));
-    const deleteButton = dialogs[1].query(By.css('.submit-button'));
+    const dialog = fixture.debugElement.query(By.css(`.dialog-type-1-height`));
+    const deleteButton = dialog.query(By.css('.submit-button'));
     deleteButton.nativeElement.click();
     fixture.detectChanges();
     const newTitles = fixture.debugElement.queryAll(By.css('.title'));
@@ -76,17 +68,16 @@ describe('AppComponent', () => {
     const map = fixture.debugElement.query(By.css('#map'));
     map.nativeElement.click();
     fixture.detectChanges();
-    const dialogs = fixture.debugElement.queryAll(By.css(`.app-dialog-component`));
-    const addDialog = dialogs[0];
-    const nameInput = addDialog.query(By.css('#name')).nativeElement;
+    const dialog = fixture.debugElement.query(By.css(`.dialog-type-0-height`));
+    const nameInput = dialog.query(By.css('#name')).nativeElement;
     nameInput.value = 'test point';
     nameInput.dispatchEvent(new Event('change'));
     fixture.detectChanges();
-    app.selectGroupForCreate = app.groups[1];
-    const groupSelect = addDialog.query(By.css('#groups')).nativeElement;
+    app.selectGroup = app.groups[1];
+    const groupSelect = dialog.query(By.css('#groups')).nativeElement;
     groupSelect.dispatchEvent(new Event('change'));
     fixture.detectChanges();
-    const addButton = addDialog.query(By.css('.submit-button'));
+    const addButton = dialog.query(By.css('.submit-button'));
     addButton.nativeElement.click();
     fixture.detectChanges();
     const newTitles = fixture.debugElement.queryAll(By.css('.title'));

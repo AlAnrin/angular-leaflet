@@ -1,0 +1,77 @@
+<div class="column">
+  <div class="toolbar row">
+    <img class="toolbar-icon" src="assets/henomorph.png">
+    {{title}}
+  </div>
+  <div class="row">
+    <div class="app-list">
+      <div class="list">
+        <div *ngFor="let group of groups">
+          <div class="row">
+            <h4>{{group.name | titlecase }}</h4>
+            <div class="spacer"></div>
+            <button class="icon-button hidden-list-icon" (click)="hiddenGroup(group)">
+              <img [src]="group.hidden ? 'assets/keyboard_arrow_down-black-18dp.svg'
+              : 'assets/keyboard_arrow_up-black-18dp.svg'">
+            </button>
+          </div>
+          <ng-container *ngIf="!group.hidden">
+            <div *ngFor="let coord of group.array">
+              <div class="row">
+                <div #point (click)="selectPoint$.next({coord: coord, group: group})"
+                     [ngClass]="{title: true,
+            active : group.id === selectPoint.groupId && coord.id === selectPoint.id}">
+                  {{coord.name}}
+                </div>
+                <div class="spacer"></div>
+                <button class="icon-button delete-icon-button" (click)="openDialogToDeletePoint(coord, group)">
+                  <img src="assets/delete-black-18dp.svg">
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="app-map">
+      <div class="map-container">
+        <div class="map-frame">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div #modal class="modal-dialog" *ngIf="isDialogShow">
+  <div [ngClass]="{'modal-content': true,
+  'dialog-type-0-height': dialogType === 0,
+  'dialog-type-1-height': dialogType === 1}">
+    <button (click)="changeDialogState()" class="icon-button modal-close-icon">
+      <img src="assets/close-black-18dp.svg">
+    </button>
+    <h4>{{dialogTitle}}</h4>
+    <span class="dialog-span">По координатам:</span>
+    <ng-container *ngIf="dialogType === 0">
+      <span>[{{dialogCoordinates}}]</span>
+      <span class="dialog-span">В группу:</span>
+      <form #nameForm="ngForm" class="dialog-form">
+        <select name="groups" id="groups" #group="ngModel"
+                [(ngModel)]="selectGroup" required>
+          <option *ngFor="let group of groups"
+                  [ngValue]="group">{{group.name}}</option>
+        </select>
+        <span class="dialog-span">Название:</span>
+        <input name="name" #name="ngModel" id="name"
+               [(ngModel)]="newPointName" required minlength="4">
+        <button class="submit-button"
+                [disabled]="nameForm.invalid"
+                (click)="addNewPoint()">Создать</button>
+      </form>
+    </ng-container>
+    <ng-container *ngIf="dialogType === 1">
+      <span>[{{dialogCoordinates.coordinates}}]</span>
+      <button class="submit-button"
+              (click)="removePoint(dialogCoordinates, selectGroup)">Удалить</button>
+    </ng-container>
+  </div>
+</div>
